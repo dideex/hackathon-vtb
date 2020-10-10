@@ -16,5 +16,6 @@ services:
         SSH_PUBLIC_KEY: ""
     # environment: *services_hosts
     volumes:
-      - .:/opt/app
+      - ./lib:/opt/app/lib
+      - ./assets:/opt/app/assets
     command: iex -S mix
