@@ -21,7 +21,7 @@ defmodule PoCWeb.InitSessionController do
         _ -> 100
       end
 
-    permanent_token = Utils.rand_generate() |> IO.inspect(label: :init_session)
+    permanent_token = Utils.rand_generate()
     Redis.put(permanent_token, %{hard_token: value})
 
     render(conn, "index.json", permanent_token: permanent_token)

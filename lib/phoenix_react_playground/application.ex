@@ -3,6 +3,8 @@ defmodule PoC.Application do
   # for more information on OTP Applications
   @moduledoc false
 
+  alias PoC.Redis
+
   use Application
 
   @redis_host Application.get_env(:poc, :redis_host, "localhost")
@@ -27,7 +29,10 @@ defmodule PoC.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: PoC.Supervisor]
-    Supervisor.start_link(children, opts)
+    res = Supervisor.start_link(children, opts)
+    Redis.put("pow:1", {"1:20:201010:token::tVUp9K9RbczsH+k", 900, 289977})
+    Redis.put("pow:2", {"1:20:201010:token::THexoHezBRSYWSI", 5700, 2107710})
+    res
   end
 
   # Tell Phoenix to update the endpoint configuration
