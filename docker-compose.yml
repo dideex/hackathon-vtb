@@ -15,4 +15,6 @@ services:
       args:
         SSH_PUBLIC_KEY: ""
     # environment: *services_hosts
-    command: mix run --no-halt
+    volumes:
+      - .:/opt/app
+    command: iex -S mix

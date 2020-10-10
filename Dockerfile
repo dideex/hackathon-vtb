@@ -9,10 +9,11 @@ RUN      apk update && \
          mix local.rebar --force && \
          mix local.hex --force && \
          apk add --update nodejs nodejs-npm
-         
 
 WORKDIR  /opt/app
 
 COPY     . ./
 
-RUN      mix do deps.get, deps.compile
+RUN      mix do deps.get
+RUN      npm install
+RUN      mix deps.compile
