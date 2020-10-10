@@ -12,8 +12,25 @@ defmodule PoCWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
 
-    get "/init", PoCWeb.InitSessionController, :index
+    post "/init_session", PoCWeb.InitSessionController, :index
+    post "/init_fingerpring", PoCWeb.InitFingerPrint, :index
+    post "/pow", PoCWeb.PoW, :index
+    post "/auth", PoCWeb.Auth, :index
+    post "/make_payment", PoCWeb.MakePayment, :index
+
+    get "/pow", PoCWeb.GetPoW, :index
+    get "/me", PoCWeb.Me, :index
   end
+
+# post:init_session {token: <Token>} -> {pernament_token: <Token>}
+# post:init_fingerpring {fingerprint: <String>, finger_token: <String> | null} -> {finger_token: <String>}
+# # get:pow {} -> {hash: <String>}
+# # post:init_pow {hash: <String>} -> null
+
+# post:auth {login: <String>, password: <String>} -> {user_token: token} | error
+# get:me {} -> {user: <User>}
+# post:make_payment {amount: <Float>, phone: <String>} -> ok | error
+
 
   scope "/", PoCWeb do
     pipe_through :browser

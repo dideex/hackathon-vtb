@@ -1,4 +1,5 @@
-defmodule PoCWeb.InitSessionView do
+
+defmodule PoCWeb.AuthView do
   use PoCWeb, :view
 
   def render("index.json", %{permanent_token: permanent_token}) do
