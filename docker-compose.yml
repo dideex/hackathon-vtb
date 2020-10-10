@@ -1,0 +1,18 @@
+version: '2.1'
+
+# x-common_variables:
+#   &services_hosts
+
+services:
+  backend:
+    image: backend
+    tty: true
+    ports:
+      - "4000:4000"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        SSH_PUBLIC_KEY: ""
+    # environment: *services_hosts
+    command: mix run --no-halt
