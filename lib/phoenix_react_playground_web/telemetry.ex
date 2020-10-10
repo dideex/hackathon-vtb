@@ -1,4 +1,4 @@
-defmodule PhoenixReactPlaygroundWeb.Telemetry do
+defmodule PoCWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -47,7 +47,7 @@ defmodule PhoenixReactPlaygroundWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {PhoenixReactPlaygroundWeb, :count_users, []}
+      # {PoCWeb, :count_users, []}
     ]
   end
 end

@@ -1,5 +1,5 @@
-defmodule PhoenixReactPlayground.Redis do
+defmodule PoC.Redis do
   @moduledoc false
-  use PhoenixReactPlayground.Redix, redix: PhoenixReactPlayground.App.Redix
+  use PoC.Redix, redix: PoC.App.Redix
 
 end

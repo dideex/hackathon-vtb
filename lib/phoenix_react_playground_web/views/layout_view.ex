@@ -1,5 +1,5 @@
-defmodule PhoenixReactPlaygroundWeb.LayoutView do
-  use PhoenixReactPlaygroundWeb, :view
+defmodule PoCWeb.LayoutView do
+  use PoCWeb, :view
 
   def token, do: rand_generate()
 

@@ -1,5 +1,5 @@
-defmodule PhoenixReactPlaygroundWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :phoenix_react_playground
+defmodule PoCWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :poc
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
@@ -10,7 +10,7 @@ defmodule PhoenixReactPlaygroundWeb.Endpoint do
     signing_salt: "Xcdd+l2M"
   ]
 
-  socket "/socket", PhoenixReactPlaygroundWeb.UserSocket,
+  socket "/socket", PoCWeb.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -22,7 +22,7 @@ defmodule PhoenixReactPlaygroundWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :phoenix_react_playground,
+    from: :poc,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -32,7 +32,7 @@ defmodule PhoenixReactPlaygroundWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :phoenix_react_playground
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :poc
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -50,5 +50,5 @@ defmodule PhoenixReactPlaygroundWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug PhoenixReactPlaygroundWeb.Router
+  plug PoCWeb.Router
 end

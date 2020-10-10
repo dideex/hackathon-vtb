@@ -1,3 +1,3 @@
-defmodule PhoenixReactPlaygroundWeb.PageView do
-  use PhoenixReactPlaygroundWeb, :view
+defmodule PoCWeb.PageView do
+  use PoCWeb, :view
 end

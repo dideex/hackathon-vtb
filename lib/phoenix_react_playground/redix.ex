@@ -1,4 +1,4 @@
-defmodule PhoenixReactPlayground.Redix do
+defmodule PoC.Redix do
   @moduledoc false
 
   # Client API

@@ -1,5 +1,5 @@
-defmodule PhoenixReactPlaygroundWeb.PageController do
-  use PhoenixReactPlaygroundWeb, :controller
+defmodule PoCWeb.PageController do
+  use PoCWeb, :controller
 
   def index(conn, _params) do
     render(conn, "index.html")

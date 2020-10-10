@@ -1,7 +1,7 @@
 use Mix.Config
 
 # Configure your database
-config :phoenix_react_playground, PhoenixReactPlayground.Repo,
+config :poc, PoC.Repo,
   username: "postgres",
   password: "postgres",
   database: "phoenix_react_playground_dev",
@@ -15,7 +15,7 @@ config :phoenix_react_playground, PhoenixReactPlayground.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :phoenix_react_playground, PhoenixReactPlaygroundWeb.Endpoint,
+config :poc, PoCWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -54,7 +54,7 @@ config :phoenix_react_playground, PhoenixReactPlaygroundWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :phoenix_react_playground, PhoenixReactPlaygroundWeb.Endpoint,
+config :poc, PoCWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",

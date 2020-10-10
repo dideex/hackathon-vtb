@@ -1,5 +1,5 @@
-defmodule PhoenixReactPlayground.Repo do
+defmodule PoC.Repo do
   use Ecto.Repo,
-    otp_app: :phoenix_react_playground,
+    otp_app: :poc,
     adapter: Ecto.Adapters.Postgres
 end

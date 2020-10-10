@@ -1,8 +1,8 @@
-defmodule PhoenixReactPlaygroundWeb.InitSessionView do
-  use PhoenixReactPlaygroundWeb, :view
+defmodule PoCWeb.InitSessionView do
+  use PoCWeb, :view
 
   def render("index.json", %{trackers: trackers}) do
-    %{data: render_one(trackers, PhoenixReactPlaygroundWeb.InitSessionView, "init.json")}
+    %{data: render_one(trackers, PoCWeb.InitSessionView, "init.json")}
   end
 
   def render("init.json", _) do
@@ -10,11 +10,11 @@ defmodule PhoenixReactPlaygroundWeb.InitSessionView do
   end
 end
 
-post:init_session {token: <Token>} -> {pernament_token: <Token>}
-post:init_fingerpring {fingerprint: <String>, finger_token: <String> | null} -> {finger_token: <String>}
-# get:pow {} -> {hash: <String>}
-# post:init_pow {hash: <String>} -> null
+# post:init_session {token: <Token>} -> {pernament_token: <Token>}
+# post:init_fingerpring {fingerprint: <String>, finger_token: <String> | null} -> {finger_token: <String>}
+# # get:pow {} -> {hash: <String>}
+# # post:init_pow {hash: <String>} -> null
 
-post:auth {login: <String>, password: <String>} -> {user_token: token} | error
-get:me {} -> {user: <User>}
-post:make_payment {amount: <Float>, phone: <String>} -> ok | error
+# post:auth {login: <String>, password: <String>} -> {user_token: token} | error
+# get:me {} -> {user: <User>}
+# post:make_payment {amount: <Float>, phone: <String>} -> ok | error

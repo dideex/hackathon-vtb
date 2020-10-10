@@ -1,5 +1,5 @@
-defmodule PhoenixReactPlaygroundWeb.InitSessionController do
-  use PhoenixReactPlaygroundWeb, :controller
+defmodule PoCWeb.InitSessionController do
+  use PoCWeb, :controller
 
   def index(conn, _params) do
     render(conn, "index.json", trackers: %{})

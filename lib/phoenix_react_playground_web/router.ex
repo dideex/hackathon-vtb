@@ -1,5 +1,5 @@
-defmodule PhoenixReactPlaygroundWeb.Router do
-  use PhoenixReactPlaygroundWeb, :router
+defmodule PoCWeb.Router do
+  use PoCWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -12,10 +12,10 @@ defmodule PhoenixReactPlaygroundWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
 
-    get "/init", PhoenixReactPlaygroundWeb.InitSessionController, :index
+    get "/init", PoCWeb.InitSessionController, :index
   end
 
-  scope "/", PhoenixReactPlaygroundWeb do
+  scope "/", PoCWeb do
     pipe_through :browser
 
     # get "/", PageController, :index
@@ -23,7 +23,7 @@ defmodule PhoenixReactPlaygroundWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PhoenixReactPlaygroundWeb do
+  # scope "/api", PoCWeb do
   #   pipe_through :api
   # end
 

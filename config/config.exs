@@ -7,15 +7,15 @@
 # General application configuration
 use Mix.Config
 
-config :phoenix_react_playground,
-  ecto_repos: [PhoenixReactPlayground.Repo]
+config :poc,
+  ecto_repos: [PoC.Repo]
 
 # Configures the endpoint
-config :phoenix_react_playground, PhoenixReactPlaygroundWeb.Endpoint,
+config :poc, PoCWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "U8xEfQRGuv+QToBvP6yVR8BKkwWTCSSgsp4HnnqCB1+XE3U6GEjh+tBxP5hAY+ok",
-  render_errors: [view: PhoenixReactPlaygroundWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: PhoenixReactPlayground.PubSub,
+  render_errors: [view: PoCWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: PoC.PubSub,
   live_view: [signing_salt: "LilZt58Z"]
 
 # Configures Elixir's Logger
