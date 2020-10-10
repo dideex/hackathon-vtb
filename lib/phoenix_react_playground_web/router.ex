@@ -20,6 +20,9 @@ defmodule PoCWeb.Router do
 
     get "/pow", PoCWeb.GetPoW, :index
     get "/me", PoCWeb.Me, :index
+
+    # TODO: for debug
+    get "/personal_state", PoCWeb.State, :show
   end
 
 # post:init_session {token: <Token>} -> {pernament_token: <Token>}
