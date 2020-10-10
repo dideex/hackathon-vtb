@@ -19,3 +19,8 @@ services:
       - ./lib:/opt/app/lib
       - ./assets:/opt/app/assets
     command: iex -S mix
+
+  kv_store:
+    image: redis:alpine
+    ports:
+      - "6379:6379"

@@ -33,6 +33,7 @@ defmodule PhoenixReactPlayground.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:redix, "~> 0.8"},     # KV-storage
       {:phoenix, "~> 1.5.1"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},

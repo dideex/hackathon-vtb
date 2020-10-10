@@ -5,6 +5,9 @@ defmodule PhoenixReactPlayground.Application do
 
   use Application
 
+  @redis_host Application.get_env(:phoenix_react_playground, :redis_host, "localhost")
+  @redis_port Application.get_env(:phoenix_react_playground, :redis_port, 6379)
+
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
@@ -13,6 +16,8 @@ defmodule PhoenixReactPlayground.Application do
       # PhoenixReactPlaygroundWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: PhoenixReactPlayground.PubSub},
+      # Redis
+      {Redix, host: @redis_host, port: @redis_port, name: PhoenixReactPlayground.App.Redix},
       # Start the Endpoint (http/https)
       PhoenixReactPlaygroundWeb.Endpoint
       # Start a worker by calling: PhoenixReactPlayground.Worker.start_link(arg)

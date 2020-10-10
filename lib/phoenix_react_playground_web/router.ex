@@ -11,6 +11,8 @@ defmodule PhoenixReactPlaygroundWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+
+    get "/init", PhoenixReactPlaygroundWeb.InitSessionController, :index
   end
 
   scope "/", PhoenixReactPlaygroundWeb do
