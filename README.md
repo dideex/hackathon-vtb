@@ -1,4 +1,4 @@
-# PhoenixReactPlayground
+# PoC
 
 To start your Phoenix server:
 

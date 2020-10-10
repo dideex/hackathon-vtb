@@ -1,4 +1,4 @@
-defmodule PhoenixReactPlaygroundWeb.ConnCase do
+defmodule PoCWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule PhoenixReactPlaygroundWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use PhoenixReactPlaygroundWeb.ConnCase, async: true`, although
+  by setting `use PoCWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -22,20 +22,20 @@ defmodule PhoenixReactPlaygroundWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import PhoenixReactPlaygroundWeb.ConnCase
+      import PoCWeb.ConnCase
 
-      alias PhoenixReactPlaygroundWeb.Router.Helpers, as: Routes
+      alias PoCWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint PhoenixReactPlaygroundWeb.Endpoint
+      @endpoint PoCWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PhoenixReactPlayground.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PoC.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PhoenixReactPlayground.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(PoC.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

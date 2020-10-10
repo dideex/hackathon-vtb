@@ -1,5 +1,5 @@
-defmodule PhoenixReactPlaygroundWeb.PageControllerTest do
-  use PhoenixReactPlaygroundWeb.ConnCase
+defmodule PoCWeb.PageControllerTest do
+  use PoCWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

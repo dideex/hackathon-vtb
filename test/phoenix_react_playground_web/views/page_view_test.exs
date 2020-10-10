@@ -1,3 +1,3 @@
-defmodule PhoenixReactPlaygroundWeb.PageViewTest do
-  use PhoenixReactPlaygroundWeb.ConnCase, async: true
+defmodule PoCWeb.PageViewTest do
+  use PoCWeb.ConnCase, async: true
 end

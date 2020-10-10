@@ -5,7 +5,7 @@ use Mix.Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :phoenix_react_playground, PhoenixReactPlayground.Repo,
+config :poc, PoC.Repo,
   username: "postgres",
   password: "postgres",
   database: "phoenix_react_playground_test#{System.get_env("MIX_TEST_PARTITION")}",
@@ -14,7 +14,7 @@ config :phoenix_react_playground, PhoenixReactPlayground.Repo,
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :phoenix_react_playground, PhoenixReactPlaygroundWeb.Endpoint,
+config :poc, PoCWeb.Endpoint,
   http: [port: 4002],
   server: false
 

@@ -1,5 +1,5 @@
-defmodule PhoenixReactPlaygroundWeb.ErrorView do
-  use PhoenixReactPlaygroundWeb, :view
+defmodule PoCWeb.ErrorView do
+  use PoCWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

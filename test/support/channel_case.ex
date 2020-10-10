@@ -1,4 +1,4 @@
-defmodule PhoenixReactPlaygroundWeb.ChannelCase do
+defmodule PoCWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule PhoenixReactPlaygroundWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use PhoenixReactPlaygroundWeb.ChannelCase, async: true`, although
+  by setting `use PoCWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,18 +21,18 @@ defmodule PhoenixReactPlaygroundWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import PhoenixReactPlaygroundWeb.ChannelCase
+      import PoCWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint PhoenixReactPlaygroundWeb.Endpoint
+      @endpoint PoCWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PhoenixReactPlayground.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PoC.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PhoenixReactPlayground.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(PoC.Repo, {:shared, self()})
     end
 
     :ok

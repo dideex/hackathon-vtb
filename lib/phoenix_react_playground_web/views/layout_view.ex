@@ -1,21 +1,13 @@
-defmodule PhoenixReactPlaygroundWeb.LayoutView do
-  use PhoenixReactPlaygroundWeb, :view
+defmodule PoCWeb.LayoutView do
+  use PoCWeb, :view
 
-  def token, do: rand_generate()
+  alias PoC.Redis
+  alias PoC.Utils
 
-  @spec rand_generate :: String.t()
-  def rand_generate do
-    12
-    |> :crypto.strong_rand_bytes()
-    |> Base.encode64()
-    # remove the trailing =
-    |> strip_trailing_char
-  end
+  def token do
+    hash = Utils.rand_generate()
+    Redis.put(hash, DateTime.utc_now() |> DateTime.to_unix() |> to_string())
 
-  @spec strip_trailing_char(string :: String.t()) :: String.t()
-  def strip_trailing_char(string) do
-    slen = byte_size(string) - 1
-    <<core::binary-size(slen), _rest::binary>> = string
-    core
+    hash
   end
 end

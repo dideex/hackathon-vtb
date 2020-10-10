@@ -1,9 +1,9 @@
-defmodule PhoenixReactPlayground.MixProject do
+defmodule PoC.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :phoenix_react_playground,
+      app: :poc,
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule PhoenixReactPlayground.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {PhoenixReactPlayground.Application, []},
+      mod: {PoC.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -33,6 +33,7 @@ defmodule PhoenixReactPlayground.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:redix, "~> 0.8"},     # KV-storage
       {:phoenix, "~> 1.5.1"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},
