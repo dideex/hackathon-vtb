@@ -1,0 +1,62 @@
+/* This file is for your main application css. */
+
+/* Alerts and form errors */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.alert p {
+  margin-bottom: 0;
+}
+.alert:empty {
+  display: none;
+}
+
+.button {
+  padding: 0 40px;
+  height: 52px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #0a2896;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: .025em;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color .3s,color .3s;
+  font-weight: 600;
+  font-style: normal;
+  font-family: OpenSans,sans-serif;
+}
+
+.button:hover {
+  background-color: #233ea1;
+}
+
+.button[disabled] {
+  cursor: default;
+  background-color: #e6ecf2;
+  color: #97a4b1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}

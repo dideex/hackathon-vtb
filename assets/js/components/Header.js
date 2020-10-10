@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Header = () => {
-  console.log(' LOG ___ window ', window.__TOKEN__)
   return (
     <header>
       <section className="container">
