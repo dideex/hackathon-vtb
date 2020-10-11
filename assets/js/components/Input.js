@@ -5,12 +5,18 @@ const classes = {
   text: 'input-text'
 };
 
-const Input = ({ type = 'text', ...props }) => (
-  <input 
-    type={type}
-    {...props}
-    className={getClassName(classes[type])}
-  />
+let id = 0;
+const getId = () => id++;
+
+const Input = ({ text, type = 'text', ...props }) => (
+  <div className="input">
+    <input 
+      type={type}
+      {...props}
+      className={getClassName(classes[type])}
+    />
+    <label>{text}</label>
+  </div>
 );
 
 export default Input;
