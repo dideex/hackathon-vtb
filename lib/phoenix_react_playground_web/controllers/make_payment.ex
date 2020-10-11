@@ -4,12 +4,12 @@ defmodule PoCWeb.MakePayment do
 
   use PoCWeb, :controller
 
-  def index(conn, _token) do
+  def index(conn, %{"amount" => amount}) do
     [permanent_token] = get_req_header(conn, "permanent-token")
     WatchDog.increment(permanent_token)
 
     if Utils.trust?(permanent_token) do
-      render(conn, "index.json", amount: 1_000)
+      render(conn, "index.json", amount: amount)
     else
       render(conn, "index.json", [])
     end

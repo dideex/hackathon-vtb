@@ -24,6 +24,8 @@ defmodule PoC.Utils do
     # TODO: Add more cases
     with {:ok, {hash, average_time, nonce}} <- Redis.get("pow:#{Enum.random(1..1)}") do
       {:ok, hash, average_time, nonce}
+    else
+      _ -> {:ok, "1:20:201010:token::tVUp9K9RbczsH+k", 2400, 289977}
     end
   end
 

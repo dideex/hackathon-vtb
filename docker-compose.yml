@@ -1,26 +1,40 @@
 version: '2.1'
 
-# x-common_variables:
-#   &services_hosts
+x-common_variables:
+  &services_hosts
+  REDIS_HOST: 182.20.0.3
 
 services:
-  # backend:
-  #   image: backend
-  #   tty: true
-  #   ports:
-  #     - "4000:4000"
-  #   build:
-  #     context: .
-  #     dockerfile: ./Dockerfile
-  #     args:
-  #       SSH_PUBLIC_KEY: ""
-  #   # environment: *services_hosts
-  #   volumes:
-  #     - ./lib:/opt/app/lib
-  #     - ./assets:/opt/app/assets
-  #   command: iex -S mix
+  phoenix:
+    image: phoenix
+    tty: true
+    ports:
+      - "4000:4000"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        SSH_PUBLIC_KEY: ""
+    environment: *services_hosts
+    volumes:
+      - ./lib:/opt/app/lib
+      - ./assets:/opt/app/assets
+    command: iex -S mix
+    networks:
+      - backend
+    #     ipv4_address: 172.20.0.2
 
-  kv_store:
+  kv_store_1:
     image: redis:alpine
+    environment: *services_hosts
     ports:
       - "6379:6379"
+    networks:
+      backend:
+        ipv4_address: $REDIS_HOST
+
+networks:
+  backend:
+    ipam:
+      config:
+        - subnet: 182.20.0.0/24

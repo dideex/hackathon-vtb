@@ -8,8 +8,8 @@ defmodule PoCWeb.PoW do
     nonce = String.to_integer(nonce)
     [permanent_token] = get_req_header(conn, "permanent-token")
 
-    with {:ok, {average_time, ^nonce, timestamp}} <- Redis.get("pow_hash:#{permanent_token}") |> IO.inspect(label: :redis),
-         {:ok, date_time} <- timestamp |> DateTime.from_unix(:millisecond) |> IO.inspect(label: :date) do
+    with {:ok, {average_time, ^nonce, timestamp}} <- Redis.get("pow_hash:#{permanent_token}"),
+         {:ok, date_time} <- timestamp |> DateTime.from_unix(:millisecond) do
       diff = DateTime.utc_now() |> DateTime.diff(date_time)
       Utils.update_trust(permanent_token, :pow, average_time - diff)
       # TODO: del redis key
@@ -18,8 +18,8 @@ defmodule PoCWeb.PoW do
       _ ->
         render(conn, "index.json", [])
     end
-  # rescue
-  #   _ ->
-  #     render(conn, "index.json", [])
+  rescue
+    _ ->
+      render(conn, "index.json", [])
   end
 end
