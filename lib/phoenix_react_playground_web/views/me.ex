@@ -1,11 +1,11 @@
 defmodule PoCWeb.MeView do
   use PoCWeb, :view
 
-  def render("index.json", permanent_token) do
-    %{data: render_one(permanent_token, PoCWeb.MeView, "init.json")}
+  def render("index.json", %{user: user}) do
+    %{data: user}
   end
 
-  def render("init.json", _args) do
-    %{user: %{user_id: "id"}}
+  def render("index.json", _args) do
+    %{error: "access deined"}
   end
 end

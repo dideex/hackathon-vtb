@@ -5,6 +5,18 @@ defmodule PoCWeb.GetPoW do
   use PoCWeb, :controller
 
   def index(conn, _token) do
-    render(conn, "index.json", [])
+    [permanent_token] = get_req_header(conn, "permanent-token")
+
+    with {:ok, hash, average_time, nonce} <- Utils.get_pow_hash() do
+      now = DateTime.utc_now() |> DateTime.to_unix(:millisecond)
+      Redis.put("pow_hash:#{permanent_token}", {average_time, nonce, now})
+      render(conn, "index.json", hash: hash)
+    else
+      _ -> render(conn, "index.json", [])
+    end
+
+  rescue
+    _ ->
+      render(conn, "index.json", [])
   end
 end

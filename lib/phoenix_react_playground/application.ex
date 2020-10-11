@@ -3,6 +3,9 @@ defmodule PoC.Application do
   # for more information on OTP Applications
   @moduledoc false
 
+  alias PoC.Redis
+  alias PoC.WatchDog
+
   use Application
 
   @redis_host Application.get_env(:poc, :redis_host, "localhost")
@@ -10,24 +13,22 @@ defmodule PoC.Application do
 
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      # PoC.Repo,
-      # Start the Telemetry supervisor
-      # PoCWeb.Telemetry,
-      # Start the PubSub system
       {Phoenix.PubSub, name: PoC.PubSub},
       # Redis
       {Redix, host: @redis_host, port: @redis_port, name: PoC.App.Redix},
+      WatchDog,
       # Start the Endpoint (http/https)
       PoCWeb.Endpoint
-      # Start a worker by calling: PoC.Worker.start_link(arg)
-      # {PoC.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: PoC.Supervisor]
-    Supervisor.start_link(children, opts)
+    res = Supervisor.start_link(children, opts)
+    # TODO: add more cases
+    Redis.put("pow:1", {"1:20:201010:token::tVUp9K9RbczsH+k", 2400, 289977})
+    Redis.put("pow:2", {"1:20:201010:token::THexoHezBRSYWSI", 7700, 2107710})
+    res
   end
 
   # Tell Phoenix to update the endpoint configuration

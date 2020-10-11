@@ -12,6 +12,9 @@ defmodule PoCWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
 
+    # TODO: add block for permanent token
+    # post "/init", PoCWeb.InitSessionController, :index
+
     post "/init_session", PoCWeb.InitSessionController, :index
     post "/init_fingerpring", PoCWeb.InitFingerPrint, :index
     post "/pow", PoCWeb.PoW, :index
@@ -26,9 +29,9 @@ defmodule PoCWeb.Router do
   end
 
 # post:init_session {token: <Token>} -> {pernament_token: <Token>}
-# post:init_fingerpring {fingerprint: <String>, finger_token: <String> | null} -> {finger_token: <String>}
+# post:init_fingerprint {fingerprint: <String>, finger_token: <String> | null} -> {finger_token: <String>}
 # # get:pow {} -> {hash: <String>}
-# # post:init_pow {hash: <String>} -> null
+# # post:pow {nonce: <Int>} -> null
 
 # post:auth {login: <String>, password: <String>} -> {user_token: token} | error
 # get:me {} -> {user: <User>}

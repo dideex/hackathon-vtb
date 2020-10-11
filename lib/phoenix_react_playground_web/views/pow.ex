@@ -1,11 +1,11 @@
 defmodule PoCWeb.PoWView do
   use PoCWeb, :view
 
-  def render("index.json", args) do
-    %{data: render_one(args, PoCWeb.PoWView, "init.json")}
+  def render("index.json", %{res: :ok}) do
+    %{data: %{result: "ok"}}
   end
 
-  def render("init.json", _) do
-    %{result: "ok"}
+  def render("index.json", _) do
+    %{error: "permission deined"}
   end
 end
