@@ -9,7 +9,6 @@
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
    <body>
-   <h1>Uniq token here <%= token() %></h2>
    <div id="react-app"></div>
     <script type="text/javascript"> window.__TOKEN__="<%= token() %>"; </script>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

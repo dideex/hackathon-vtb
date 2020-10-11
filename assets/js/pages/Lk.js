@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import Button from '../components/Button'
 import Input from '../components/Input';
 import Main from '../components/Main'
-import store from '../store';
+import { store } from '../store';
 
 const PHONE = 'phone;'
 

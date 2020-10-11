@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from '../components/Button'
 import Input from '../components/Input';
 import Main from '../components/Main'
-import store from '../store';
+import { store } from '../store';
 
 export default () => {
   const [login, setLogin] = useState('');
@@ -40,9 +39,9 @@ export default () => {
 
   return (
     <Main>
-      <span className={}>Вход в БАНК</span>
-      <Input onChange={(e) => setLogin(e.target.value)} />
-      <Input onChange={(e) => setPassword(e.target.value)}/>
+      <span className='text-gretting-title'>Вход в БАНК</span>
+      <Input text="ЛОГИН" onChange={(e) => setLogin(e.target.value)} />
+      <Input text="ПАРОЛЬ" onChange={(e) => setPassword(e.target.value)}/>
       <Button onClick={handleClick} disabled={!login || !password || loading}>
         главная кнопка
       </Button>

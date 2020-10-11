@@ -5,51 +5,39 @@ import Header from './components/Header';
 import HomePage from './pages';
 import PrivateRoute from './PrivateRoute';
 import Fingerprint2 from '@fingerprintjs/fingerprintjs';
-import store from './store';
-
-// if (window.requestIdleCallback) {
-//   requestIdleCallback(function () {
-//       Fingerprint2.get(function (components) {
-//         console.log(JSON.stringify(components));
-
-//         fetch('/init_fingerpring',  {
-//           method: 'POST',
-//           headers: {
-//             'Content-Type': 'application/json;charset=utf-8'
-//           },
-//           body: JSON.stringify(user)
-//         })
-//       })
-//   })
-
-// } else {
-//   setTimeout(function () {
-//     requestIdleCallback(function () {
-//       Fingerprint2.get(function (components) {
-//         console.log((components || []).reduce((accum, { value }) => accum + (Array.isArray(value) ? value.flat(2).join() : value), ''));
-//       })
-//   })
-
-//   }, 500)
-// }
+import { store } from './store';
+import { proofOfConcept } from './utils/proofOfConcept';
 
 export default class Root extends React.Component {
   state = {
     auth: false,
   };
 
-  async componentDidMount() {
-    const { permament_token } = await fetch('/init_session',  {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify({ token: window.__TOKEN__ })
-    }).then(data => data.json());
+  componentDidMount() {
+    requestIdleCallback(async function() {
+      const { hash } = await fetch('/pow', {
+        method: 'GET',
+      }).then(data => data.json());
 
-    store.permament_token = permament_token;
+      await fetch('/init_pow', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({ hash: proofOfConcept(20, hash) })
+      })
 
-    requestIdleCallback(function () {
+      const { permament_token } = await fetch('/init_session',  {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({ token: window.__TOKEN__ })
+      }).then(data => data.json());
+
+      store.permament_token = permament_token;
+
+
       const finger_token = localStorage.getItem('finger_token');
 
       Fingerprint2.get(components => {
@@ -75,6 +63,7 @@ export default class Root extends React.Component {
     return (
       <>
         <Header />
+        <img src="/images/logo.svg" alt="" className="logo" />
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={HomePage} />
