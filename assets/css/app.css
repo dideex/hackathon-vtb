@@ -1,4 +1,29 @@
-/* This file is for your main application css. */
+body {
+  margin: 0;
+  background-color: #f0f5f9;
+}
+
+#react-app {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#react-app::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: .05;
+  background: url('/images/logo.svg');
+  background-size: 60px 22px;
+  background-position: top left;
+}
 
 /* Alerts and form errors */
 .alert {
@@ -59,4 +84,82 @@
 .container {
   display: flex;
   flex-direction: column;
+}
+
+.input {
+  position: relative;
+}
+
+.input > input {
+  box-sizing: border-box;
+  padding: 0 20px;
+  width: 100%;
+  height: 64px;
+  outline: none;
+  border: 2px solid #e6ecf2;
+  border-radius: 1px;
+  background: none;
+  background: #fff;
+  color: #3b4256;
+  font-size: 1em;
+  font-weight: 400;
+  font-style: normal;
+  font-family: OpenSans,sans-serif;
+  margin-bottom: 5px;
+}
+
+.input > label {
+  color: #2f3441;
+  transform: translate3d(0,0.5em,0) scale(.69);
+  position: absolute;
+  top: 0;
+  left: 1.375em;
+  overflow: hidden;
+  padding-left: 2px;
+  width: calc(100% - 2.75em);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: .04em;
+  font: 400 1em OpenSans,sans-serif;
+  transition: .24s;
+  transform-origin: left top;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.input > input:not(:focus) + label, .input > input:not([value]) + label {
+  color: #6b7683;
+  transform: translate3d(0,1.25em,0) scale(1);
+}
+
+.input:last-of-type {
+  margin-bottom: 15px;
+}
+
+.container {
+  box-sizing: border-box;
+  padding: 58px 80px 38px;
+  height: 520px;
+  width: 520px;
+  background-color: #fff;
+}
+
+.text-gretting-title {
+  font-family: OpenSans, sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: rgb(59, 66, 86);
+  text-align: center;
+  padding-top: 67px;
+  margin-bottom: 65px;
+}
+
+.logo {
+  position: absolute;
+  width: 60px;
+  top: calc(22px * 2);
+  padding: 0;
+  height: 22px;
+  left: calc(60px * 2);
 }
