@@ -1,8 +1,10 @@
 defmodule PoC.Utils do
   alias PoC.Redis
+  alias PoC.WatchDog
 
   def trust?(token) do
-    with {:ok, %{browser_token: c1, hard_token: c2, pow: c3}} <- Redis.get(token) |> IO.inspect(label: :token) do
+    with t when t == 0 or t >= 1_000 <- WatchDog.get_average_value(token),
+         {:ok, %{browser_token: c1, hard_token: c2, pow: c3}} <- Redis.get(token) do
       case pow_raing(c3) do
         6 when c1 <= 120 and c2 <= 40 -> true
         5 when c1 <= 100 and c2 <= 40 -> true
@@ -13,7 +15,6 @@ defmodule PoC.Utils do
         0 when c1 <= 0   and c2 <= 10 -> true
         _ -> false
       end
-      |> IO.inspect(label: :res)
     else
       _ -> false
     end

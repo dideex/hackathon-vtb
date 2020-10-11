@@ -4,6 +4,7 @@ defmodule PoC.Application do
   @moduledoc false
 
   alias PoC.Redis
+  alias PoC.WatchDog
 
   use Application
 
@@ -15,10 +16,9 @@ defmodule PoC.Application do
       {Phoenix.PubSub, name: PoC.PubSub},
       # Redis
       {Redix, host: @redis_host, port: @redis_port, name: PoC.App.Redix},
+      WatchDog,
       # Start the Endpoint (http/https)
       PoCWeb.Endpoint
-      # Start a worker by calling: PoC.Worker.start_link(arg)
-      # {PoC.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
