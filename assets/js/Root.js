@@ -8,6 +8,7 @@ import PrivateRoute from './PrivateRoute';
 import Fingerprint2 from '@fingerprintjs/fingerprintjs';
 import { store } from './store';
 import { proofOfConcept } from './utils/proofOfConcept';
+import Demo from './components/Demo';
 
 export default class Root extends React.Component {
   state = {
@@ -16,7 +17,7 @@ export default class Root extends React.Component {
     response: '',
   };
 
-  async app_token() {
+  app_token = async () => {
     const {
       data: { permanent_token },
     } = await fetch('/init_session', {
@@ -31,7 +32,7 @@ export default class Root extends React.Component {
     this.setState({ result: !!permanent_token, response: JSON.stringify({ data: { permanent_token } }) });
   }
 
-  async finger_print() {
+  finger_print = async () => {
     const finger_token = localStorage.getItem('finger_token') || '';
 
     Fingerprint2.get(async (components) => {
@@ -61,7 +62,7 @@ export default class Root extends React.Component {
     });
   }
 
-  async pow() {
+  pow = async () => {
     const pow = await fetch('/pow', {
       method: 'GET',
       headers: {
@@ -85,7 +86,7 @@ export default class Root extends React.Component {
     this.setState({ result: res.data && res.data.result == 'ok', response: JSON.stringify(res) });
   }
 
-  async me() {
+  me = async () => {
     const { permanent_token, user_token } = store;
 
     const res = await fetch('/me', {
@@ -114,29 +115,14 @@ export default class Root extends React.Component {
       <>
         <Header />
         <img src="/images/logo.svg" alt="" className="logo" />
-        <div>
-          <div className="flag" style={{ backgroundColor: this.bgc }}>
-            {' '}
-          </div>
-          <br />
-          <button className="button" onClick={() => this.app_token()}>
-            check app token
-          </button>
-          <br />
-          <button className="button" onClick={() => this.finger_print()}>
-            check fingerprint
-          </button>
-          <br />
-          <button className="button" onClick={() => this.pow()}>
-            check proof of work
-          </button>
-          <br></br>
-          <hr></hr>
-          <button className="button" onClick={() => this.me()}>
-            Internal api
-          </button>
-        </div>
-        <h2>{this.state.response}</h2>
+        <Demo 
+          color={this.bgc} 
+          app_token={this.app_token} 
+          finger_print={this.finger_print} 
+          pow={this.pow} 
+          me={this.me} 
+          response={this.state.response}
+        />
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={HomePage} />
