@@ -8,7 +8,7 @@ defmodule PoCWeb.InitFingerPrint do
     [permanent_token] = get_req_header(conn, "permanent-token")
     {:ok, _token} = Redis.get(permanent_token)
 
-    with {:ok, old_token} <- Redis.get("finger_print:#{finger_print}"),
+    with {:ok, old_token} <- Redis.get("finger_print:#{finger_print}") |> IO.inspect(label: :finger_print),
          {:tokens, ^finger_token} <- {:tokens, old_token} do
       0
     else

@@ -8,6 +8,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 #react-app::before {
@@ -19,10 +20,17 @@ body {
   right: 0;
   top: 0;
   bottom: 0;
-  opacity: .05;
+  opacity: 0.05;
   background: url('/images/logo.svg');
   background-size: 60px 22px;
   background-position: top left;
+}
+.flag {
+  width: 40px;
+  height: 40px;
+  align-self: center;
+  margin: auto;
+  border-radius: 50%;
 }
 
 /* Alerts and form errors */
@@ -62,13 +70,13 @@ body {
   background-color: #0a2896;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: .025em;
+  letter-spacing: 0.025em;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color .3s,color .3s;
+  transition: background-color 0.3s, color 0.3s;
   font-weight: 600;
   font-style: normal;
-  font-family: OpenSans,sans-serif;
+  font-family: OpenSans, sans-serif;
 }
 
 .button:hover {
@@ -104,7 +112,7 @@ body {
   font-size: 1em;
   font-weight: 400;
   font-style: normal;
-  font-family: OpenSans,sans-serif;
+  font-family: OpenSans, sans-serif;
   margin-bottom: 5px;
   transition: padding 0.3s;
 }
@@ -115,7 +123,7 @@ body {
 
 .input > label {
   color: #6b7683;
-  transform: translate3d(0,1.5em,0) scale(1);
+  transform: translate3d(0, 1.5em, 0) scale(1);
   position: absolute;
   top: 0;
   left: 1.375em;
@@ -124,16 +132,17 @@ body {
   width: calc(100% - 2.75em);
   text-overflow: ellipsis;
   white-space: nowrap;
-  letter-spacing: .04em;
-  font: 400 1em OpenSans,sans-serif;
-  transition: .24s;
+  letter-spacing: 0.04em;
+  font: 400 1em OpenSans, sans-serif;
+  transition: 0.24s;
   transform-origin: left top;
   pointer-events: none;
   will-change: transform;
 }
 
-.input > input:focus + label, .input > input:valid + label {
-  transform: translate3d(0,0.5em,0) scale(.69);
+.input > input:focus + label,
+.input > input:valid + label {
+  transform: translate3d(0, 0.5em, 0) scale(0.69);
 }
 
 .input:last-of-type {
@@ -161,10 +170,10 @@ body {
 }
 
 .text-payments {
-  font-family: OpenSans,sans-serif;
+  font-family: OpenSans, sans-serif;
   font-size: 20px;
   font-weight: 300;
-  letter-spacing: -.02em;
+  letter-spacing: -0.02em;
   color: #3b4256;
   text-align: left;
   padding-top: 0px;
@@ -173,7 +182,7 @@ body {
 
 .text-info {
   position: absolute;
-  font-family: OpenSans,sans-serif;
+  font-family: OpenSans, sans-serif;
   font-size: 32px;
   font-weight: 300;
   letter-spacing: -0.02em;
@@ -192,17 +201,17 @@ body {
 }
 
 .text-error {
-  font-family: OpenSans,sans-serif;
+  font-family: OpenSans, sans-serif;
   font-size: 14px;
   font-weight: 300;
-  letter-spacing: -.02em;
+  letter-spacing: -0.02em;
   color: #ca181f;
   text-align: left;
   padding-top: 0px;
   margin-bottom: 0px;
   height: 0px;
   opacity: 0;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .text-error-open {
@@ -244,7 +253,7 @@ body {
   display: flex;
   flex-direction: column;
   opacity: 1;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .wrapper-disabled {

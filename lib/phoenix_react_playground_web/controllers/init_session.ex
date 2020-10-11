@@ -5,9 +5,9 @@ defmodule PoCWeb.InitSessionController do
   use PoCWeb, :controller
 
   def index(conn, %{"token" => token}) do
+    {:ok, time} = Redis.get(token)
     value =
-      with {:ok, time} <- Redis.get(token),
-           {:ok, date_time} <- time |> String.to_integer() |> DateTime.from_unix(),
+      with {:ok, date_time} <- time |> String.to_integer() |> DateTime.from_unix(),
            {:res, number} <- {:res, DateTime.utc_now() |> DateTime.diff(date_time)} do
         number
       else
@@ -21,9 +21,14 @@ defmodule PoCWeb.InitSessionController do
         _ -> 100
       end
 
+    Redis.delete(token)
     permanent_token = Utils.rand_generate()
     Redis.put(permanent_token, %{hard_token: value})
 
     render(conn, "index.json", permanent_token: permanent_token)
+
+    rescue
+      _ ->
+        render(conn, "index.json", [])
   end
 end

@@ -1,5 +1,5 @@
 defmodule PoCWeb.Me do
-  # alias PoC.Redis
+  alias PoC.Redis
   alias PoC.Utils
   alias PoC.WatchDog
 
@@ -7,6 +7,7 @@ defmodule PoCWeb.Me do
 
   def index(conn, _token) do
     [permanent_token] = get_req_header(conn, "permanent-token")
+    {:ok, _token} = Redis.get(permanent_token)
     WatchDog.increment(permanent_token)
 
     if Utils.trust?(permanent_token) do

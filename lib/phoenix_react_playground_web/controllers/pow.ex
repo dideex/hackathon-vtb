@@ -7,6 +7,7 @@ defmodule PoCWeb.PoW do
   def index(conn, %{"nonce" => nonce}) do
     nonce = String.to_integer(nonce)
     [permanent_token] = get_req_header(conn, "permanent-token")
+    {:ok, _token} = Redis.get(permanent_token)
 
     with {:ok, {average_time, ^nonce, timestamp}} <- Redis.get("pow_hash:#{permanent_token}"),
          {:ok, date_time} <- timestamp |> DateTime.from_unix(:millisecond) do

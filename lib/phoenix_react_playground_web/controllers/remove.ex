@@ -5,6 +5,7 @@ defmodule PoCWeb.Remove do
 
   def index(conn, _token) do
     [permanent_token] = get_req_header(conn, "permanent-token")
+    {:ok, _token} = Redis.get(permanent_token)
     Redis.delete(permanent_token)
 
     render(conn, "index.json", [])
