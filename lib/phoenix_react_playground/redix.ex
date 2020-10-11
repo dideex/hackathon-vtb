@@ -22,17 +22,25 @@ defmodule PoC.Redix do
     end
   end
 
+  def delete(redix, key) do
+    command = ["DEL", key]
+
+    case Redix.command(redix, command) do
+      {:ok, _} -> :ok
+      _ -> {:error, "Can not execute '#{commands_to_string(command)}'"}
+    end
+  end
+
   defmacro __using__(opts) do
     redix = assert_valid_key(opts[:redix])
 
     quote do
-      @behaviour TextGen.Behaviour.PersistStorage
 
-      @impl true
       def put(key, value), do: unquote(__MODULE__).put(unquote(redix), key, value)
 
-      @impl true
       def get(key), do: unquote(__MODULE__).get(unquote(redix), key)
+
+      def delete(key), do: unquote(__MODULE__).delete(unquote(redix), key)
     end
   end
 

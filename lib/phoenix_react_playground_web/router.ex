@@ -12,8 +12,7 @@ defmodule PoCWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
 
-    # TODO: add block for permanent token
-    # post "/init", PoCWeb.InitSessionController, :index
+    get "/init", PoCWeb.Remove, :index
 
     post "/init_session", PoCWeb.InitSessionController, :index
     post "/init_fingerpring", PoCWeb.InitFingerPrint, :index

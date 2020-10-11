@@ -2,11 +2,11 @@
 defmodule PoCWeb.AuthView do
   use PoCWeb, :view
 
-  def render("index.json", permanent_token) do
-    %{data: render_one(permanent_token, PoCWeb.AuthView, "init.json")}
+  def render("index.json", %{jwt: jwt}) do
+    %{data: %{jwt: jwt}}
   end
 
-  def render("init.json", _permanent_token) do
-    %{jwt_token: "jwt"}
+  def render("index.json", _permanent_token) do
+    %{error: "permission denied"}
   end
 end

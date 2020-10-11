@@ -2,11 +2,11 @@
 defmodule PoCWeb.MakePaymentView do
   use PoCWeb, :view
 
-  def render("index.json", permanent_token) do
-    %{data: render_one(permanent_token, PoCWeb.MakePaymentView, "init.json")}
+  def render("index.json", %{amount: amount}) do
+    %{data: %{transfered: amount}}
   end
 
-  def render("init.json", _args) do
-    %{result: "ok"}
+  def render("index.json", _args) do
+    %{result: "permission denied"}
   end
 end
