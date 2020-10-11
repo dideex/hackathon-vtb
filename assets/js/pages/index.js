@@ -13,7 +13,7 @@ export default () => {
   const history = useHistory();
 
   const handleClick = () => {
-    const { permament_token } = store;
+    const { permanent_token } = store;
 
     setLoading(true);
 
@@ -21,7 +21,7 @@ export default () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        permament_token,
+        'permanent-token': permanent_token
       },
       body: JSON.stringify({ login, password })
     })
@@ -40,10 +40,10 @@ export default () => {
   return (
     <Main>
       <span className='text-gretting-title'>Вход в БАНК</span>
-      <Input text="ЛОГИН" onChange={(e) => setLogin(e.target.value)} />
-      <Input text="ПАРОЛЬ" onChange={(e) => setPassword(e.target.value)}/>
+      <Input required text="ЛОГИН" onChange={(e) => setLogin(e.target.value)} />
+      <Input required text="ПАРОЛЬ" type="password" onChange={(e) => setPassword(e.target.value)}/>
       <Button onClick={handleClick} disabled={!login || !password || loading}>
-        главная кнопка
+        Войти
       </Button>
     </Main>
 )};

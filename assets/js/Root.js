@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
 import HomePage from './pages';
+import LkPage from './pages/Lk';
 import PrivateRoute from './PrivateRoute';
 import Fingerprint2 from '@fingerprintjs/fingerprintjs';
 import { store } from './store';
@@ -15,19 +16,7 @@ export default class Root extends React.Component {
 
   componentDidMount() {
     requestIdleCallback(async function() {
-      const { hash } = await fetch('/pow', {
-        method: 'GET',
-      }).then(data => data.json());
-
-      await fetch('/init_pow', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({ hash: proofOfConcept(20, hash) })
-      })
-
-      const { permament_token } = await fetch('/init_session',  {
+      const { data: { permanent_token } } = await fetch('/init_session',  {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
@@ -35,26 +24,43 @@ export default class Root extends React.Component {
         body: JSON.stringify({ token: window.__TOKEN__ })
       }).then(data => data.json());
 
-      store.permament_token = permament_token;
+      store.permanent_token = permanent_token;
 
 
       const finger_token = localStorage.getItem('finger_token');
 
-      Fingerprint2.get(components => {
+      Fingerprint2.get(async components => {
         const finger_print = (components || []).reduce((accum, { value }) => accum + (Array.isArray(value) ? value.flat(2).join() : value), '');
 
-        fetch('/init_fingerpring',  {
+        await fetch('/init_fingerpring',  {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
-            permament_token
+            'permanent-token': permanent_token
           },
           body: JSON.stringify({ finger_token, finger_print })
         })
         .then(data => data.json())
         .then(data => {
           localStorage.setItem('finger_token', data.finger_token);
+        });
+
+        const { data: { hash } } = await fetch('/pow', {
+          method: 'GET',
+          headers: {
+            'permanent-token': permanent_token
+          }
+        }).then(data => data.json());
+  
+        await fetch('/pow', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'permanent-token': permanent_token
+          },
+          body: JSON.stringify({ nonce: String(proofOfConcept(20, hash)) })
         })
+  
       });
     })
   }
@@ -67,7 +73,7 @@ export default class Root extends React.Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <PrivateRoute auth={this.state.auth} path="/lk" component={() => null} />
+            <PrivateRoute auth={this.state.auth} path="/lk" component={LkPage} />
           </Switch>
         </BrowserRouter>
       </>
