@@ -1,7 +1,7 @@
 use Mix.Config
 
-config :poc, redis_host: System.get_env("REDIS_HOST", "localhost"),
-            redis_port: System.get_env("REDIS_PORT", "6379") |> String.to_integer()
+config :poc, redis_host: System.get_env("REDIS_HOST", "localhost") |> IO.inspect(label: "REDIS_HOST"),
+            redis_port: System.get_env("REDIS_PORT", "6379") |> String.to_integer() |> IO.inspect(label: "REDIS_PORT")
 # Configure your database
 config :poc, PoC.Repo,
   username: "postgres",

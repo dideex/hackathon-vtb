@@ -24,7 +24,8 @@ defmodule PoCWeb.InitFingerPrint do
     finger_token = create_token(finger_print)
     render(conn, "index.json", finger_token: finger_token)
   rescue
-    _ ->
+    err ->
+      IO.inspect(err, label: :finger_print_error)
       render(conn, "index.json", [])
   end
 

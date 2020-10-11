@@ -15,14 +15,15 @@ services:
       dockerfile: ./Dockerfile
       args:
         SSH_PUBLIC_KEY: ""
-    environment: *services_hosts
+    environment:
+      REDIS_HOST: 182.20.0.3
     volumes:
       - ./lib:/opt/app/lib
       - ./assets:/opt/app/assets
     command: iex -S mix
     networks:
-      - backend
-    #     ipv4_address: 172.20.0.2
+      backend:
+        ipv4_address: 182.20.0.2
 
   kv_store_1:
     image: redis:alpine
@@ -31,7 +32,7 @@ services:
       - "6379:6379"
     networks:
       backend:
-        ipv4_address: $REDIS_HOST
+        ipv4_address: 182.20.0.3
 
 networks:
   backend:
