@@ -8,12 +8,12 @@ const classes = {
 let id = 0;
 const getId = () => id++;
 
-const Input = ({ text, type = 'text', ...props }) => (
+const Input = ({ text, type = 'text', className, ...props }) => (
   <div className="input">
     <input 
       type={type}
       {...props}
-      className={getClassName(classes[type])}
+      className={getClassName(className, classes[type])}
     />
     <label>{text}</label>
   </div>
