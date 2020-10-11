@@ -1,7 +1,7 @@
 # PoC
 
 ## AWS: 
-http://ec2-100-24-35-248.compute-1.amazonaws.com:4000/
+http://ec2-3-84-204-42.compute-1.amazonaws.com:4000/
 
 ## Start:
 ```bash
