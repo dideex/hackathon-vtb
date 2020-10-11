@@ -40,7 +40,7 @@ export default () => {
 
   return (
     <Main>
-      <span className={}>Вход в БАНК</span>
+      <span>Вход в БАНК</span>
       <Input onChange={(e) => setLogin(e.target.value)} />
       <Input onChange={(e) => setPassword(e.target.value)}/>
       <Button onClick={handleClick} disabled={!login || !password || loading}>

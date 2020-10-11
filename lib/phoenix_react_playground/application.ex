@@ -12,11 +12,6 @@ defmodule PoC.Application do
 
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      # PoC.Repo,
-      # Start the Telemetry supervisor
-      # PoCWeb.Telemetry,
-      # Start the PubSub system
       {Phoenix.PubSub, name: PoC.PubSub},
       # Redis
       {Redix, host: @redis_host, port: @redis_port, name: PoC.App.Redix},
@@ -30,8 +25,9 @@ defmodule PoC.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: PoC.Supervisor]
     res = Supervisor.start_link(children, opts)
-    Redis.put("pow:1", {"1:20:201010:token::tVUp9K9RbczsH+k", 900, 289977})
-    Redis.put("pow:2", {"1:20:201010:token::THexoHezBRSYWSI", 5700, 2107710})
+    # TODO: add more cases
+    Redis.put("pow:1", {"1:20:201010:token::tVUp9K9RbczsH+k", 2400, 289977})
+    Redis.put("pow:2", {"1:20:201010:token::THexoHezBRSYWSI", 7700, 2107710})
     res
   end
 
