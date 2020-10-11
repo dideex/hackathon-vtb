@@ -92,7 +92,7 @@ body {
 
 .input > input {
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 10px 20px 0 20px;
   width: 100%;
   height: 64px;
   outline: none;
@@ -109,8 +109,8 @@ body {
 }
 
 .input > label {
-  color: #2f3441;
-  transform: translate3d(0,0.5em,0) scale(.69);
+  color: #6b7683;
+  transform: translate3d(0,1.5em,0) scale(1);
   position: absolute;
   top: 0;
   left: 1.375em;
@@ -127,9 +127,8 @@ body {
   will-change: transform;
 }
 
-.input > input:not(:focus) + label, .input > input:not([value]) + label {
-  color: #6b7683;
-  transform: translate3d(0,1.25em,0) scale(1);
+.input > input:focus + label, .input > input:valid + label {
+  transform: translate3d(0,0.5em,0) scale(.69);
 }
 
 .input:last-of-type {

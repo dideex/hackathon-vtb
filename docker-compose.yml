@@ -4,21 +4,21 @@ version: '2.1'
 #   &services_hosts
 
 services:
-  backend:
-    image: backend
-    tty: true
-    ports:
-      - "4000:4000"
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-      args:
-        SSH_PUBLIC_KEY: ""
-    # environment: *services_hosts
-    volumes:
-      - ./lib:/opt/app/lib
-      - ./assets:/opt/app/assets
-    command: iex -S mix
+  # backend:
+  #   image: backend
+  #   tty: true
+  #   ports:
+  #     - "4000:4000"
+  #   build:
+  #     context: .
+  #     dockerfile: ./Dockerfile
+  #     args:
+  #       SSH_PUBLIC_KEY: ""
+  #   # environment: *services_hosts
+  #   volumes:
+  #     - ./lib:/opt/app/lib
+  #     - ./assets:/opt/app/assets
+  #   command: iex -S mix
 
   kv_store:
     image: redis:alpine

@@ -8,7 +8,7 @@ defmodule PoC.Application do
 
   use Application
 
-  @redis_host Application.get_env(:poc, :redis_host, "localhost")
+  @redis_host Application.get_env(:poc, :redis_host, "0.0.0.0")
   @redis_port Application.get_env(:poc, :redis_port, 6379)
 
   def start(_type, _args) do

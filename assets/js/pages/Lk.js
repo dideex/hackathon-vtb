@@ -9,22 +9,34 @@ const PHONE = 'phone;'
 
 export default () => {
   useEffect(() => {
-    const { permament_token, user_token } = store;
+    const { permanent_token, user_token } = store;
 
     fetch('/me', {
       type: 'GET',
       headers: {
-        permament_token,
+        'permanent-token': permanent_token,
         user_token,
       },
     })
   }, []);
 
+  const handleClick = () =>{
+    const { permanent_token, user_token } = store;
+
+    fetch('/me', {
+      type: 'GET',
+      headers: {
+        'permanent-token': permanent_token,
+        user_token,
+      },
+    });
+  };
+
   return (
     <Main>
-      <form>
-        <label for={PHONE}>Телефон</label><Input required id={PHONE} />
-        <Button type='submit'>главная кнопка</Button>
-      </form>
+        <span className='text-gretting-title'>Вход в БАНК</span>
+        <Input required text='ТЕЛЕФОН' />
+        <Input required type='number' text='СУММА' />
+        <Button onClick={handleClick}>главная кнопка</Button>
     </Main>
 )};
